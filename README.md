@@ -22,7 +22,6 @@ should contain an array of json objects in following format
 ]
 >
 
-
 ###[GET] /api/global
 Returns the global map in json array.  Please minimize the usage to reduce traffic
 
