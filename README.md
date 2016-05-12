@@ -32,7 +32,7 @@ Erases the data. Can be used when game restarts
 Shows the size of the global map array
 
 ###[GET] /api/global/test
-An example
+Shows an example
 
 If you are Green Corp, attach your name here and feel free to contribute! <em>(contact group 11 for access)  
 Contributors: Peter Rodriguez, Seung Kim
