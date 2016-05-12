@@ -12,14 +12,14 @@ should contain an array of json objects in following format
 (check <strong>/api/global/test</strong> for an example)
 
 >
-[
-  {
-    "x":12,                 // coordinates must be Integers, not String
-    "y":14,                 // ALL CAPS as in enums folder
-    "terrain": "SAND",      // ROCK, SOIL, GRAVEL, SAND, FLUID, NONE
-    "science": "CRYSTAL",   // RADIACTIVE, ORGANIC, MINERAL, ARTIFACT, CRYSTAL, NONE
-  }, ...
-]
+[  
+  {  
+    "x":12,                 // coordinates must be Integers, not String  
+    "y":14,                 // ALL CAPS as in enums folder  
+    "terrain": "SAND",      // ROCK, SOIL, GRAVEL, SAND, FLUID, NONE  
+    "science": "CRYSTAL",   // RADIACTIVE, ORGANIC, MINERAL, ARTIFACT, CRYSTAL, NONE  
+  }, ...  
+]  
 >
 
 ###[GET] /api/global
