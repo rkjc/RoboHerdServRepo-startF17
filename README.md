@@ -8,9 +8,10 @@ and ideally a comment of whatever functionality as well as your name there if yo
 ####Instructions:
 
 ###[POST] /api/global
-should contain an array of json objects in following format
+should contain an array of json objects in following format  
 (check <strong>/api/global/test</strong> for an example)
 
+>
 [
   {
     "x":12,                 // coordinates must be Integers, not String
@@ -19,6 +20,7 @@ should contain an array of json objects in following format
     "science": "CRYSTAL",   // RADIACTIVE, ORGANIC, MINERAL, ARTIFACT, CRYSTAL, NONE
   }, ...
 ]
+>
 
 
 ###[GET] /api/global
