@@ -54,7 +54,21 @@ app.post('/api/global', function (req, res) {
             // validate that data has all attributes and is in correct format
             if (validateTile(tile)) {
                 var key = tile.x + "/" + tile.y;
-                map[key] = tile;
+
+                // if the tile exists in the map
+                if (map[key]){
+
+                    // if map has none, update it whatsoever
+                    if (map[key].science === 'NONE'){
+                        map[key].science = tile.science;
+
+                        // if map does have science in the tile,
+                    }
+
+                } else {
+                    map[key] = tile;
+                }
+
             }
         })
         res.send('OK');
