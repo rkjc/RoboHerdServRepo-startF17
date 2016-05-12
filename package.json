@@ -3,18 +3,23 @@
   "version": "1.0.0",
   "description": "Communication Server for Green Corp",
   "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/peterbryan/537GreenCorp.git"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
     "Group 11"
   ],
-  "author": "PBR",
+  "author": "PBR, Seung Kim",
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.14.1",
     "express": "^4.13.3",
-    "mongodb": "*",
-    "mongojs": "^2.4.0"
+    "mongojs": "^2.4.0",
+    "method-override": "^2.3.5",
+    "morgan": "^1.7.0"
   }
 }
