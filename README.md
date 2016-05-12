@@ -13,12 +13,12 @@ should contain an array of json objects in following format
 
 <pre>
 [  
- {  
-  "x":12,                 // coordinates must be Integers, not String  
-  "y":14,                 // ALL CAPS as in enums folder  
-  "terrain": "SAND",      // ROCK, SOIL, GRAVEL, SAND, FLUID, NONE  
-  "science": "CRYSTAL",   // RADIACTIVE, ORGANIC, MINERAL, ARTIFACT, CRYSTAL, NONE  
- }, ...  
+  {  
+   "x":12,                 // coordinates must be Integers, not String  
+   "y":14,                 // ALL CAPS as in enums folder  
+   "terrain": "SAND",      // ROCK, SOIL, GRAVEL, SAND, FLUID, NONE  
+   "science": "CRYSTAL",   // RADIACTIVE, ORGANIC, MINERAL, ARTIFACT, CRYSTAL, NONE  
+  }, ...  
 ]  
 </pre>
 
