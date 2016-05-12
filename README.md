@@ -11,7 +11,7 @@ and ideally a comment of whatever functionality as well as your name there if yo
 should contain an array of json objects in following format  
 (check <strong>/api/global/test</strong> for an example)
 
->
+<pre>
 [  
  {  
   "x":12,                 // coordinates must be Integers, not String  
@@ -20,7 +20,7 @@ should contain an array of json objects in following format
   "science": "CRYSTAL",   // RADIACTIVE, ORGANIC, MINERAL, ARTIFACT, CRYSTAL, NONE  
  }, ...  
 ]  
->
+</pre>
 
 ###[GET] /api/global
 Returns the global map in json array.  Please minimize the usage to reduce traffic
