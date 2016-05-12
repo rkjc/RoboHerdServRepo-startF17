@@ -13,12 +13,12 @@ should contain an array of json objects in following format
 
 >
 [  
-  {  
-    "x":12,                 // coordinates must be Integers, not String  
-    "y":14,                 // ALL CAPS as in enums folder  
-    "terrain": "SAND",      // ROCK, SOIL, GRAVEL, SAND, FLUID, NONE  
-    "science": "CRYSTAL",   // RADIACTIVE, ORGANIC, MINERAL, ARTIFACT, CRYSTAL, NONE  
-  }, ...  
+ {  
+  "x":12,                 // coordinates must be Integers, not String  
+  "y":14,                 // ALL CAPS as in enums folder  
+  "terrain": "SAND",      // ROCK, SOIL, GRAVEL, SAND, FLUID, NONE  
+  "science": "CRYSTAL",   // RADIACTIVE, ORGANIC, MINERAL, ARTIFACT, CRYSTAL, NONE  
+ }, ...  
 ]  
 >
 
@@ -34,5 +34,5 @@ Shows the size of the global map array
 ###[GET] /api/global/test
 An example
 
-If you are Green Corp, attach your name here and feel free to contribute! <em>(contact group 11 for access)
+If you are Green Corp, attach your name here and feel free to contribute! <em>(contact group 11 for access)  
 Contributors: Peter Rodriguez, Seung Kim
