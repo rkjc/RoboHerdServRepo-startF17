@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Communication Page</title>
+</head>
+<body>
+
+<h1>Welcome, Green Corp!</h1>
+<p>This is a communication server that receives scan maps and aggregates into a global.<br><h3>Instructions:</h3></p>
+<ul>
+    <li>
+        <strong>[POST] /api/global</strong><br>
+        should contain an array of json objects in following format<br>
+        (check <strong>/api/global/test</strong> for an example)
+        <pre>
+[
+  {
+    "x":12,                 // coordinates must be Integers, not String
+    "y":14,                 // ALL CAPS as in enums folder
+    "terrain": "SAND",      // ROCK, SOIL, GRAVEL, SAND, FLUID, NONE
+    "science": "CRYSTAL",   // RADIACTIVE, ORGANIC, MINERAL, ARTIFACT, CRYSTAL, NONE
+  }, ...
+]
+        </pre>
+    </li>
+    <li>
+        <strong>[GET] /api/global</strong><br>
+        Returns the global map in json array.
+
+    </li><br>
+    <li>
+        <strong>[GET] /api/global/reset</strong><br>
+        Erases the data. Can be used when game restarts
+    </li><br>
+    <li>
+        <strong>[GET] /api/global/size</strong><br>
+        Shows the size of the global map array
+    </li><br>
+    <li>
+        <strong>[GET] /api/global/test</strong><br>
+        An example
+    </li>
+</ul>
+
+<br>
+<p>- If you are Green Corp, attach your name here and feel free to contribute! <em>(contact group 11 for access)</em><br>Source code available at: <strong>https://github.com/peterbryan/537GreenCorp.git</strong></p>
+<pre>Contributors: Peter Rodriguez, Seung Kim</pre>
+</body>
+</html>
