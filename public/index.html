@@ -19,7 +19,7 @@
     "x":12,                 // coordinates must be Integers, not String
     "y":14,                 // ALL CAPS as in enums folder
     "terrain": "SAND",      // ROCK, SOIL, GRAVEL, SAND, FLUID, NONE
-    "science": "CRYSTAL",   // RADIACTIVE, ORGANIC, MINERAL, ARTIFACT, CRYSTAL, NONE
+    "science": "CRYSTAL",   // RADIOACTIVE, ORGANIC, MINERAL, ARTIFACT, CRYSTAL, NONE
   }, ...
 ]
         </pre>
@@ -30,16 +30,45 @@
 
     </li><br>
     <li>
-        <strong>[GET] /api/global/reset</strong><br>
-        Erases the data. Can be used when game restarts
-    </li><br>
-    <li>
         <strong>[GET] /api/global/size</strong><br>
         Shows the size of the global map array
     </li><br>
     <li>
+        <strong>[GET] /api/science/all</strong><br>
+        Shows locations of all sciences
+    </li><br>
+    <li>
+        <strong>[GET] /api/science/drill</strong><br>
+        Shows locations of sciences possible for driller
+    </li><br>
+    <li>
+        <strong>[GET] /api/science/excavate</strong><br>
+        Shows locations of sciences possible for excavater
+    </li><br>
+    <li>
+        <strong>[GET] /api/coord/:x/:y</strong><br>
+        Shows the coordinate at specified location
+        <pre>
+example: /api/coord/82/18
+    {
+        "x": 85,
+        "y": 18,
+        "science": "MINERAL",
+        "terrain": "GRAVEL"
+    }
+        </pre>
+    </li>
+    <li>
+        <strong>[GET] /api/roverinfo</strong><br>
+        Shows information of the rovers
+    </li><br>
+    <li>
         <strong>[GET] /api/global/test</strong><br>
         An example
+    </li><br>
+    <li>
+        <strong>[GET] /api/global/reset</strong><br>
+        Erases the data. Can be used when game restarts
     </li>
 </ul>
 

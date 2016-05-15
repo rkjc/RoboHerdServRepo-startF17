@@ -7,7 +7,9 @@ var express = require('./express');
 var app = express();
 
 var mongojs = require('mongojs')
-var db = mongojs('green_corp', ['global']);
+var rovers = require('./rovers');
+// var db = mongojs('green_corp', ['global']);
+
 // var collection = db.collection('global');
 
 // // JSON obj of a maptile. must be in ALL CAPS, as in enum value
@@ -17,6 +19,7 @@ var db = mongojs('green_corp', ['global']);
 //         "terrain": "SAND", // GRAVEL, SOIL, ROCK, SAND, NONE
 //         "science": "CRYSTAL",  // RADIOACTIVE, ORGANIC, MINERAL, ARTIFACT, CRYSTAL, NONE
 //     };
+
 
 var map = {};
 
@@ -69,6 +72,9 @@ function mapToGlobal(science) {
 app.post('/api/global', function (req, res) {
     var tiles = req.body;
 
+    var rovername = req.header('Rover-Name');
+    var rover = rovers[rovername];
+
     // validate that the data is an array
     if (tiles && tiles.constructor === Array) {
         tiles.forEach(function (tile) {
@@ -81,6 +87,7 @@ app.post('/api/global', function (req, res) {
                 if (map[key]){
 
                     // if map has none, update it whatsoever
+                    // TODO: check cases when the science is taken
                     if (map[key].science === 'NONE'){
                         map[key].science = tile.science;
 
@@ -134,16 +141,20 @@ app.get('/api/global/test', function (req, res) {
 
 // option choices:
 // /science/all, /science/drill, /science/excavate
-app.get('/api/global/science/:option', function (req, res){
+app.get('/api/science/:option', function (req, res){
     res.send(mapToGlobal(req.params.option));
 });
 
-app.get('/api/global/coord/:x/:y', function(req, res){
+app.get('/api/coord/:x/:y', function(req, res){
     var x = req.params.x;
     var y = req.params.y;
     var key = x + '/' + y;
     var result = (map[key] === undefined) ? 'none' : map[key];
     res.send(result);
+});
+
+app.get('/api/roverinfo', function(req, res){
+    res.send(rovers);
 });
 
 // object validator
