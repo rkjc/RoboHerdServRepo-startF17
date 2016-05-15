@@ -18,7 +18,6 @@ var db = mongojs('green_corp', ['global']);
 //         "science": "CRYSTAL",  // RADIOACTIVE, ORGANIC, MINERAL, ARTIFACT, CRYSTAL, NONE
 //     };
 
-var global = [];
 var map = {};
 
 // Homepage with instructions
@@ -28,19 +27,42 @@ app.get('/', function (req, res) {
 
 // get Global Map
 app.get('/api/global', function (req, res) {
-    mapToGlobal();
-    res.send(global);
-    global = [];
+    res.send(mapToGlobal());
 });
 
 // convert map object to global array
-function mapToGlobal() {
+function mapToGlobal(science) {
     var key;
+    var results = [];
+
     for (key in map) {
+
         if (map.hasOwnProperty(key)) {
-            global.push(map[key]);
+
+            // if no parameter, just return the global map
+            if (!science){
+                results.push(map[key]);
+
+                // if science requested
+            }else if (science){
+
+                // if all
+                if (science === 'all'){
+                    if (map[key].science !== 'NONE'){
+                        results.push(map[key]);
+                    }
+
+                    // excavate or drill
+                }else if (science === 'excavate'){
+                    if ((map[key].terrain === 'SAND' || map[key].terrain === 'SOIL') && map[key].science !== 'NONE') results.push(map[key]);
+                }else if (science === 'drill'){
+                    if ((map[key].terrain === 'GRAVEL' || map[key].terrain === 'ROCK') && map[key].science !== 'NONE') results.push(map[key]);
+                }
+            }
+
         }
     }
+    return results;
 }
 
 // post to global map
@@ -81,7 +103,6 @@ app.post('/api/global', function (req, res) {
 
 // resets the data
 app.get('/api/global/reset', function (req, res) {
-    global = [];
     map = {};
     res.send("Ready for new a game with clean data! Check '/api/global' or '/api/global/size'");
 });
@@ -93,10 +114,9 @@ app.get('/api/debug/mapping', function (req, res) {
 
 // for getting the size of the json array
 app.get('/api/global/size', function (req, res) {
-    mapToGlobal();
+    var global = mapToGlobal();
     var size = global.length;
     res.send(size.toString());
-    global = [];
 });
 
 // for tutorial
@@ -110,7 +130,21 @@ app.get('/api/global/test', function (req, res) {
         {x: 11, y: 12, terrain: "NONE", science: "NONE"}
     ]
     res.send(testmap);
-})
+});
+
+// option choices:
+// /science/all, /science/drill, /science/excavate
+app.get('/api/global/science/:option', function (req, res){
+    res.send(mapToGlobal(req.params.option));
+});
+
+app.get('/api/global/coord/:x/:y', function(req, res){
+    var x = req.params.x;
+    var y = req.params.y;
+    var key = x + '/' + y;
+    var result = (map[key] === undefined) ? 'none' : map[key];
+    res.send(result);
+});
 
 // object validator
 function validateTile(tile) {
