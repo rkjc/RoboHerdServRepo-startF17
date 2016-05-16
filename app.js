@@ -75,34 +75,40 @@ app.post('/api/global', function (req, res) {
     var rovername = req.header('Rover-Name');
     var rover = rovers[rovername];
 
-    // validate that the data is an array
-    if (tiles && tiles.constructor === Array) {
-        tiles.forEach(function (tile) {
+    if (rover === undefined){
+        res.send(401);
+    }else{
 
-            // validate that data has all attributes and is in correct format
-            if (validateTile(tile)) {
-                var key = tile.x + "/" + tile.y;
+        // validate that the data is an array
+        if (tiles && tiles.constructor === Array) {
+            tiles.forEach(function (tile) {
 
-                // if the tile exists in the map
-                if (map[key]){
+                // validate that data has all attributes and is in correct format
+                if (validateTile(tile)) {
+                    var key = tile.x + "/" + tile.y;
 
-                    // if map has none, update it whatsoever
-                    // TODO: check cases when the science is taken
-                    if (map[key].science === 'NONE'){
-                        map[key].science = tile.science;
+                    // if the tile exists in the map
+                    if (map[key]){
 
-                        // if map does have science in the tile,
+                        // if map has none, update it whatsoever
+                        // TODO: check cases when the science is taken
+                        if (map[key].science === 'NONE'){
+                            map[key].science = tile.science;
+
+                            // if map does have science in the tile,
+                        }
+
+                    } else {
+                        map[key] = tile;
                     }
 
-                } else {
-                    map[key] = tile;
                 }
+            })
+            res.send('OK');
+        } else {
+            res.send('Data must be an array');
+        }
 
-            }
-        })
-        res.send('OK');
-    } else {
-        res.send('Data must be an array');
     }
     // for each tile, save to an object mapping by a key string, to minimize access time
 
@@ -142,7 +148,10 @@ app.get('/api/global/test', function (req, res) {
 // option choices:
 // /science/all, /science/drill, /science/excavate
 app.get('/api/science/:option', function (req, res){
-    res.send(mapToGlobal(req.params.option));
+    var param = req.params.option;
+    if (param === 'all' || param === 'drill' || param === 'excavate')
+        res.send(mapToGlobal(req.params.option));
+    else res.send('api/science/:parameter must be either \'all\', \'drill\', or \'excavate\' ');
 });
 
 app.get('/api/coord/:x/:y', function(req, res){
