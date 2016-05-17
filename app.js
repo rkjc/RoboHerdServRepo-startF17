@@ -105,7 +105,7 @@ app.get('/api/science/:option', function (req, res) {
 
 app.get('/api/coord/:x/:y', function (req, res) {
     var key = utils.getKey(req.params.x, req.params.y);
-    var result = (map[key] === undefined) ? 'none' : map[key];
+    var result = (map[key] === undefined) ? {} : map[key];
     res.send(result);
 });
 
@@ -122,10 +122,10 @@ app.post('/api/coord/:x/:y/:science', function (req, res) {
     } else {
         var key = utils.getKey(req.params.x, req.params.y);
         if (!key)
-            res.status(400).send('Bad input of X and Y');
+            res.send('Bad input of X and Y');
         else {
             if (utils.validateScience(science)) {
-                res.status(400).send('Bad input of science');
+                res.send('Bad input of science');
             } else {
                 if (map[key]) {
                     map[key].science = science;
@@ -134,7 +134,7 @@ app.post('/api/coord/:x/:y/:science', function (req, res) {
                     map[key].f = rover.id;
                     res.send('Changed tile ' + key);
                 } else {
-                    res.status(400).send('Coordinate doesn\'t exist in global map');
+                    res.send('Coordinate doesn\'t exist in global map');
                 }
 
             }
@@ -153,11 +153,11 @@ app.post('/api/science/gather/:x/:y', function (req, res) {
     } else {
         var key = utils.getKey(req.params.x, req.params.y);
         if (!key)
-            res.status(400).send('Bad input of X and Y');
+            res.send('Bad input of X and Y');
         else {
             if (map[key]) {
                 if (map[key].science === 'NONE') {
-                    res.status(400).send('No science in coordinate ' + key);
+                    res.send('No science in coordinate ' + key);
 
                     // TODO: implement tool and drive validity
                 } else {
@@ -169,7 +169,7 @@ app.post('/api/science/gather/:x/:y', function (req, res) {
                     }
                 }
             } else {
-                res.status(400).send('Coordinate doesn\'t exist in global map');
+                res.send('Coordinate doesn\'t exist in global map');
             }
         }
     }
