@@ -1,0 +1,26 @@
+{
+  "name": "Communication",
+  "description": "Communication Server for Green Corp",
+  "main": "app.js",
+  "authors": [
+    "PBR",
+    "Seung Kim"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "Group",
+    "11"
+  ],
+  "homepage": "https://github.com/peterbryan/537GreenCorp",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.6"
+  }
+}
