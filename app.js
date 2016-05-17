@@ -73,10 +73,11 @@ app.post('/api/global', function (req, res) {
     var tiles = req.body;
 
     var rovername = req.header('Rover-Name');
+    var apikey = req.header('greencorp-apikey');
     var rover = rovers[rovername];
 
-    if (rover === undefined){
-        res.send(401);
+    if (apikey !== process.env.GREENCORP_537_APIKEY) {
+        res.send(401, 'Unauthorized. You must have greencorp key to post');
     }else{
 
         // validate that the data is an array
