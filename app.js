@@ -30,8 +30,14 @@ app.get('/', function (req, res) {
 
 // get Global Map
 app.get('/api/global', function (req, res) {
-    res.send(mapToGlobal());
-});
+    if (apikey !== process.env.GREENCORP_537_APIKEY) {
+        res.send(401, 'Unauthorized. You must have greencorp key to post');
+    }
+    else {
+        res.send(mapToGlobal());
+    }
+})
+;
 
 // convert map object to global array
 function mapToGlobal(science) {
@@ -43,22 +49,22 @@ function mapToGlobal(science) {
         if (map.hasOwnProperty(key)) {
 
             // if no parameter, just return the global map
-            if (!science){
+            if (!science) {
                 results.push(map[key]);
 
                 // if science requested
-            }else if (science){
+            } else if (science) {
 
                 // if all
-                if (science === 'all'){
-                    if (map[key].science !== 'NONE'){
+                if (science === 'all') {
+                    if (map[key].science !== 'NONE') {
                         results.push(map[key]);
                     }
 
                     // excavate or drill
-                }else if (science === 'excavate'){
+                } else if (science === 'excavate') {
                     if ((map[key].terrain === 'SAND' || map[key].terrain === 'SOIL') && map[key].science !== 'NONE') results.push(map[key]);
-                }else if (science === 'drill'){
+                } else if (science === 'drill') {
                     if ((map[key].terrain === 'GRAVEL' || map[key].terrain === 'ROCK') && map[key].science !== 'NONE') results.push(map[key]);
                 }
             }
@@ -78,7 +84,7 @@ app.post('/api/global', function (req, res) {
 
     if (apikey !== process.env.GREENCORP_537_APIKEY) {
         res.send(401, 'Unauthorized. You must have greencorp key to post');
-    }else{
+    } else {
 
         // validate that the data is an array
         if (tiles && tiles.constructor === Array) {
@@ -89,11 +95,11 @@ app.post('/api/global', function (req, res) {
                     var key = tile.x + "/" + tile.y;
 
                     // if the tile exists in the map
-                    if (map[key]){
+                    if (map[key]) {
 
                         // if map has none, update it whatsoever
                         // TODO: check cases when the science is taken
-                        if (map[key].science === 'NONE'){
+                        if (map[key].science === 'NONE') {
                             map[key].science = tile.science;
 
                             // if map does have science in the tile,
@@ -118,7 +124,7 @@ app.post('/api/global', function (req, res) {
 // resets the data
 app.get('/api/global/reset', function (req, res) {
     map = {};
-    res.send("Ready for new a game with clean data! Check '/api/global' or '/api/global/size'");
+    res.send("Data cleaned. Now you can do it but later you will require apikey");
 });
 
 // for debugging
@@ -148,14 +154,14 @@ app.get('/api/global/test', function (req, res) {
 
 // option choices:
 // /science/all, /science/drill, /science/excavate
-app.get('/api/science/:option', function (req, res){
+app.get('/api/science/:option', function (req, res) {
     var param = req.params.option;
     if (param === 'all' || param === 'drill' || param === 'excavate')
         res.send(mapToGlobal(req.params.option));
     else res.send('api/science/:parameter must be either \'all\', \'drill\', or \'excavate\' ');
 });
 
-app.get('/api/coord/:x/:y', function(req, res){
+app.get('/api/coord/:x/:y', function (req, res) {
     var x = req.params.x;
     var y = req.params.y;
     var key = x + '/' + y;
@@ -163,7 +169,7 @@ app.get('/api/coord/:x/:y', function(req, res){
     res.send(result);
 });
 
-app.get('/api/roverinfo', function(req, res){
+app.get('/api/roverinfo', function (req, res) {
     res.send(rovers);
 });
 
