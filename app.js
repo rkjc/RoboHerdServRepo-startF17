@@ -31,7 +31,7 @@ app.get('/', function (req, res) {
 // get Global Map
 app.get('/api/global', function (req, res) {
     var apikey = req.header('greencorp-apikey');
-    if (apikey !== process.env.GREENCORP_537_APIKEY) {
+    if (!apikey || apikey !== process.env.GREENCORP_537_APIKEY) {
         res.send(401, 'Unauthorized. You must have greencorp key to post');
     }
     else {
@@ -83,7 +83,7 @@ app.post('/api/global', function (req, res) {
     var apikey = req.header('greencorp-apikey');
     var rover = rovers[rovername];
 
-    if (apikey !== process.env.GREENCORP_537_APIKEY) {
+    if (!apikey || apikey !== process.env.GREENCORP_537_APIKEY) {
         res.send(401, 'Unauthorized. You must have greencorp key to post');
     } else {
 
