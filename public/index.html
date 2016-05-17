@@ -3,77 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <title>Communication Page</title>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+
 </head>
 <body>
+<div class="container">
+    <h1>Welcome, Green Corp!</h1>
+    <hr/>
+    <h4>
+        <strong><em>5/17 Please merge <a href="https://github.com/CS-537-Spring-2016/SwarmServerAndSampleRovers">swarmserver</a> again
+            and get latest Communication.java from slack</em></strong><br><br>
+         - <em>issue: Some rover locations are not in sync with Richard's swarmserver.</em>
+        <br><br><strong>Please read the API INSTRUCTION below!</strong>
+    </h4>
+    <br>
+    <h4><a href="/instructions.html">API Instruction</a></h4>
+    <br>
+    <div class="container">
+        <p>- If you are Green Corp, download source code and feel free to contribute! <em>(contact group 11 for
+            access)</em><br>Source code available at: <strong>https://github.com/peterbryan/537GreenCorp.git</strong>
+            <em><br>Contributors: Peter Rodriguez, Seung Kim</em></p>
+    </div>
+</div>
 
-<h1>Welcome, Green Corp!</h1>
-<p>This is a communication server that receives scan maps and aggregates into a global.<br><h3>Instructions:</h3></p>
-<ul>
-    <li>
-        <strong>[POST] /api/global</strong><br>
-        should contain an array of json objects in following format<br>
-        (check <strong>/api/global/test</strong> for an example)
-        <pre>
-[
-  {
-    "x":12,                 // coordinates must be Integers, not String
-    "y":14,                 // ALL CAPS as in enums folder
-    "terrain": "SAND",      // ROCK, SOIL, GRAVEL, SAND, FLUID, NONE
-    "science": "CRYSTAL",   // RADIOACTIVE, ORGANIC, MINERAL, ARTIFACT, CRYSTAL, NONE
-  }, ...
-]
-        </pre>
-    </li>
-    <li>
-        <strong>[GET] /api/global</strong><br>
-        Returns the global map in json array.
 
-    </li><br>
-    <li>
-        <strong>[GET] /api/global/size</strong><br>
-        Shows the size of the global map array
-    </li><br>
-    <li>
-        <strong>[GET] /api/science/all</strong><br>
-        Shows locations of all sciences
-    </li><br>
-    <li>
-        <strong>[GET] /api/science/drill</strong><br>
-        Shows locations of sciences possible for driller
-    </li><br>
-    <li>
-        <strong>[GET] /api/science/excavate</strong><br>
-        Shows locations of sciences possible for excavater
-    </li><br>
-    <li>
-        <strong>[GET] /api/coord/:x/:y</strong><br>
-        Shows the coordinate at specified location
-        <pre>
-example: /api/coord/82/18
-    {
-        "x": 85,
-        "y": 18,
-        "science": "MINERAL",
-        "terrain": "GRAVEL"
-    }
-        </pre>
-    </li>
-    <li>
-        <strong>[GET] /api/roverinfo</strong><br>
-        Shows information of the rovers
-    </li><br>
-    <li>
-        <strong>[GET] /api/global/test</strong><br>
-        An example
-    </li><br>
-    <li>
-        <strong>[GET] /api/global/reset</strong><br>
-        Erases the data. Can be used when game restarts
-    </li>
-</ul>
-
-<br>
-<p>- If you are Green Corp, attach your name here and feel free to contribute! <em>(contact group 11 for access)</em><br>Source code available at: <strong>https://github.com/peterbryan/537GreenCorp.git</strong></p>
-<pre>Contributors: Peter Rodriguez, Seung Kim</pre>
 </body>
 </html>

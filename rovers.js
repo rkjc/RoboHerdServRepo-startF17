@@ -1,47 +1,56 @@
 module.exports = {
     ROVER_10: {
+        id: 10,
         sensor: 'RADIOACTIVE',
-        gather: 'NONE',
+        tool: 'NONE',
         drive: 'WHEELS'
     },
     ROVER_11: {
+        id: 11,
         sensor: 'NONE',
-        gather: 'BOTH',
+        tool: 'BOTH',
         drive: 'WALKERS'
     },
     ROVER_12: {
+        id: 12,
         sensor: 'CRYSTAL',
-        gather: 'NONE',
+        tool: 'NONE',
         drive: 'WHEELS'
     },
     ROVER_13: {
+        id: 13,
         sensor: 'ORGANIC',
-        gather: 'EXCAVATE',
+        tool: 'EXCAVATE',
         drive: 'TREADS'
     },
     ROVER_14: {
+        id: 14,
         sensor: 'ORGANIC',
-        gather: 'NONE',
+        tool: 'NONE',
         drive: 'WHEELS'
     },
     ROVER_15: {
+        id: 15,
         sensor: 'NONE',
-        gather: 'BOTH',
+        tool: 'BOTH',
         drive: 'TREADS'
     },
     ROVER_16: {
+        id: 16,
         sensor: 'RADIOACTIVE',
-        gather: 'DRILL',
+        tool: 'DRILL',
         drive: 'WALKERS'
     },
     ROVER_17: {
+        id: 17,
         sensor: 'MINERAL',
-        gather: 'NONE',
+        tool: 'NONE',
         drive: 'WHEELS'
     },
     ROVER_18: {
+        id: 18,
         sensor: 'MINERAL',
-        gather: 'EXCAVATE',
+        tool: 'EXCAVATE',
         drive: 'WHEELS'
     }
 }

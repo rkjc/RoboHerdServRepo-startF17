@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>API Instruction</title>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container">
+    <h2>Instructions</h2></p>
+    <hr>
+
+    <h3>Global</h3>
+    <ul>
+        <li>
+            <strong>[POST] /api/global</strong> <em>** requires corp secret **</em><br>
+            should contain an array of json objects in following format<br>
+        <pre>
+[
+  {
+    "x":12,                 // coordinates must be Integers, not String
+    "y":14,                 // ALL CAPS as in enums folder
+    "terrain": "SAND",      // ROCK, SOIL, GRAVEL, SAND, NONE
+    "science": "CRYSTAL",   // RADIOACTIVE, ORGANIC, MINERAL, CRYSTAL, NONE
+    "f": 10                 // Found by Rover 10 (for debugging)
+    "g": 11                 // Marked by Rover 11 for gathering
+  }, ...
+]
+        </pre>
+        </li>
+        <li>
+            <strong>[GET] /api/global</strong> <em>** requires corp secret **</em><br>
+            Returns the global map in json array.
+        </li>
+        <br>
+        <li>
+            <strong>[GET] /api/global/size</strong><br>
+            Shows the size of the global map array. Useful for testing
+        </li>
+        <br>
+        <li>
+            <strong>[GET] /api/global/reset</strong><br>
+            Erases the data. Can be used when game restarts
+        </li>
+        <br>
+        <li>
+            <strong>[GET] /api/global/test</strong><br>
+            An example
+        </li>
+    </ul>
+    <h3>Sciences</h3>
+    <ul>
+        <li>
+            <strong>[GET] /api/science/all</strong><br>
+            Shows locations of all sciences
+            <pre>
+[
+  {
+    "x": 19,
+    "y": 47,
+    "science": "ORGANIC",
+    "terrain": "SOIL",
+    "f": 13,  // found by rover 13
+    "g": 18   // marked by rover 18 for gather
+  } ...
+]</pre>
+        </li>
+        <br>
+        <li>
+            <strong>[GET] /api/science/drill</strong><br>
+            Shows locations of sciences possible for driller
+        </li>
+        <br>
+        <li>
+            <strong>[GET] /api/science/excavate</strong><br>
+            Shows locations of sciences possible for excavater
+        </li>
+
+    </ul>
+    <h3>Gather</h3>
+    <ul>
+        <li>
+            <strong>[POST] /api/gather/x/y</strong><br>
+            Mark the tile that you are going to gather this science
+        </li>
+    </ul>
+    <h3>Coordinate</h3>
+    <ul>
+        <li>
+            <strong>[GET] /api/coord/:x/:y</strong><br>
+            Shows the coordinate at specified location
+        <pre>
+example: /api/coord/82/18
+{
+  "x": 85,
+  "y": 18,
+  "science": "MINERAL",
+  "terrain": "GRAVEL"
+  "f": 17 // found by rover 17
+}</pre>
+            <br>
+        </li>
+        <li>
+            <strong>[POST] /api/coord/:x/:y/:science</strong> ** requires corp secret **<br>
+            Update science information of this coordinate
+        </li>
+    </ul>
+    <h3>Misc.</h3>
+    <ul>
+        <li>
+            <strong>[GET] /api/roverinfo</strong><br>
+            Shows information of the rovers
+        </li>
+        <br>
+
+    </ul>
+</div>
+</body>
+</html>
