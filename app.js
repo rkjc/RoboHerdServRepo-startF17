@@ -42,7 +42,7 @@ app.post('/api/global', function (req, res) {
     var rovername = req.header('Rover-Name');
     var secret = req.header('Corp-Secret');
     var rover = rovers[rovername];
-    console.log("rover " + rover.id + ", secret: " + secret + ", rover: " + rover);
+    // console.log("rover " + rover.id + ", secret: " + secret);
 
     if (!secret || (secret !== process.env.GREENCORP_537_APIKEY)) {
         res.status(401).send('Unauthorized. You must have GreenCorp secret to post');
