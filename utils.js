@@ -1,6 +1,7 @@
 /**
  * Created by samskim on 5/16/16.
  */
+var enums = require('./enums');
 
 exports.updateGlobalMap = function (map, tiles, rover){
     tiles.forEach(function (tile) {
@@ -14,10 +15,10 @@ exports.updateGlobalMap = function (map, tiles, rover){
             if (map[key]) {
 
                 // can overwrite only when the this rover is a sensor
-                if (rover.sensor !== 'NONE'){
+                if (rover.sensor !== enums.NONE){
 
                     // if sender's tile contains science, overwrite it
-                    if (tile.science !== 'NONE'){
+                    if (tile.science !== enums.NONE){
                         map[key].science = tile.science;
 
                         // TODO: found : for debugging
@@ -68,15 +69,19 @@ exports.mapToGlobal = function(map, scienceParam) {
             } else if (scienceParam) {
                 // if all
                 if (scienceParam === 'all') {
-                    if (map[key].science !== 'NONE') {
+                    if (map[key].science !== enums.NONE) {
                         results.push(map[key]);
                     }
 
                     // excavate or drill
                 } else if (scienceParam === 'excavate') {
-                    if ((map[key].terrain === 'SAND' || map[key].terrain === 'SOIL') && map[key].science !== 'NONE') results.push(map[key]);
+                    if ((map[key].terrain === enums.terrain.SAND || map[key].terrain === enums.terrain.SOIL) 
+                        && map[key].science !== enums.NONE)
+                        results.push(map[key]);
                 } else if (scienceParam === 'drill') {
-                    if ((map[key].terrain === 'GRAVEL' || map[key].terrain === 'ROCK') && map[key].science !== 'NONE') results.push(map[key]);
+                    if ((map[key].terrain === enums.terrain.GRAVEL || map[key].terrain === enums.terrain.ROCK)
+                        && map[key].science !== enums.NONE)
+                        results.push(map[key]);
                 }
             }
         }
@@ -93,8 +98,8 @@ exports.getKey = function(x, y){
 }
 
 exports.validateScience = function(science){
-    if (!science || science !== 'NONE' || science !== 'CRYSTAL' || science !== 'ORGANIC'
-        ||  science !== 'RADIOACTIVE' || science !== 'MINERAL') return false;
+    if (!science || science !== enums.NONE || science !== enums.science.CRYSTAL || science !== enums.science.ORGANIC
+        ||  science !== enums.science.RADIOACTIVE || science !== enums.science.MINERAL) return false;
     return true;
 }
 
