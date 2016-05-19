@@ -9,6 +9,7 @@ var app = express();
 var mongojs = require('mongojs')
 var rovers = require('./rovers');
 var utils = require('./utils');
+var enums = require('./enums');
 // // JSON obj of a maptile. must be in ALL CAPS, as in enum value
 //     {
 //         "x":12,
@@ -41,7 +42,7 @@ app.post('/api/global', function (req, res) {
     var rovername = req.header('Rover-Name');
     var secret = req.header('Corp-Secret');
     var rover = rovers[rovername];
-    console.log("rover " + rover.id + ", secret: " + secret);
+    // console.log("rover " + rover.id + ", secret: " + secret);
 
     if (!secret || (secret !== process.env.GREENCORP_537_APIKEY)) {
         res.status(401).send('Unauthorized. You must have GreenCorp secret to post');
@@ -61,13 +62,13 @@ app.post('/api/global', function (req, res) {
 
 // resets the data
 app.get('/api/global/reset', function (req, res) {
-    var secret = req.header('Corp-Secret');
-    if (!secret || secret !== process.env.GREENCORP_537_APIKEY) {
-        res.status(401).send('Unauthorized. You must have GreenCorp secret to access global map');
-    } else {
+    // var secret = req.header('Corp-Secret');
+    // if (!secret || secret !== process.env.GREENCORP_537_APIKEY) {
+    //     res.status(401).send('Unauthorized. You must have GreenCorp secret to access global map');
+    // } else {
         map = {};
         res.send("Data cleaned. Now you can do it but later you will require apikey");
-    }
+    // }
 });
 
 // for debugging
@@ -85,11 +86,11 @@ app.get('/api/global/size', function (req, res) {
 // for tutorial
 app.get('/api/global/test', function (req, res) {
     var testmap = [
-        {x: 1, y: 2, terrain: "GRAVEL", science: "CRYSTAL"},
-        {x: 3, y: 4, terrain: "SAND", science: "ORGANIC"},
-        {x: 5, y: 6, terrain: "SOIL", science: "MINERAL"},
-        {x: 7, y: 8, terrain: "SOIL", science: "RADIOACTIVE"},
-        {x: 9, y: 10, terrain: "NONE", science: "NONE"}
+        {x: 1, y: 2, terrain: enums.terrain.GRAVEL, science: enums.science.CRYSTAL},
+        {x: 3, y: 4, terrain: enums.terrain.SAND, science: enums.science.ORGANIC},
+        {x: 5, y: 6, terrain: enums.terrain.SOIL, science: enums.science.MINERAL},
+        {x: 7, y: 8, terrain: enums.terrain.ROCK, science: enums.science.RADIOACTIVE},
+        {x: 9, y: 10, terrain: enums.terrain.NONE, science: enums.science.NONE}
     ]
     res.send(testmap);
 });
@@ -105,7 +106,7 @@ app.get('/api/science/:option', function (req, res) {
 
 app.get('/api/coord/:x/:y', function (req, res) {
     var key = utils.getKey(req.params.x, req.params.y);
-    var result = (map[key] === undefined) ? 'none' : map[key];
+    var result = (map[key] === undefined) ? '' : map[key];
     res.send(result);
 });
 
