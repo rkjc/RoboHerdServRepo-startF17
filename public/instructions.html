@@ -12,6 +12,7 @@
 <body>
 
 <div class="container">
+    <a href="/">home</a><br>
     <h2>Instructions</h2></p>
     <hr>
 
@@ -27,19 +28,19 @@
     "y":14,                 // ALL CAPS as in enums folder
     "terrain": "SAND",      // ROCK, SOIL, GRAVEL, SAND, NONE
     "science": "CRYSTAL",   // RADIOACTIVE, ORGANIC, MINERAL, CRYSTAL, NONE
-    "f": 10                 // Found by Rover 10 (for debugging)
-    "g": 11                 // Marked by Rover 11 for gathering
+    "f": 12                 // Found by Rover 12 (for debugging)
+    "g": 15                 // Marked by Rover 15 for gathering
   }, ...
 ]
         </pre>
         </li>
         <li>
-            <strong>[GET] /api/global</strong> <em>** requires corp secret **</em><br>
+            <strong>[GET] <a href="/api/global">/api/global</a></strong> <em>** requires corp secret **</em><br>
             Returns the global map in json array.
         </li>
         <br>
         <li>
-            <strong>[GET] /api/global/size</strong><br>
+            <strong>[GET] <a href="/api/global/size">/api/global/size</a></strong><br>
             Shows the size of the global map array. Useful for testing
         </li>
         <br>
@@ -49,14 +50,14 @@
         </li>
         <br>
         <li>
-            <strong>[GET] /api/global/test</strong><br>
+            <strong>[GET] <a href="/api/global/test">/api/global/test</a></strong><br>
             An example
         </li>
     </ul>
     <h3>Sciences</h3>
     <ul>
         <li>
-            <strong>[GET] /api/science/all</strong><br>
+            <strong>[GET] <a href="/api/science/all">/api/science/all</a></strong><br>
             Shows locations of all sciences
             <pre>
 [
@@ -72,12 +73,12 @@
         </li>
         <br>
         <li>
-            <strong>[GET] /api/science/drill</strong><br>
+            <strong>[GET] <a href="/api/science/drill">/api/science/drill</a></strong><br>
             Shows locations of sciences possible for driller
         </li>
         <br>
         <li>
-            <strong>[GET] /api/science/excavate</strong><br>
+            <strong>[GET] <a href="/api/science/excavate">/api/science/excavate</a></strong><br>
             Shows locations of sciences possible for excavater
         </li>
 
@@ -86,7 +87,22 @@
     <ul>
         <li>
             <strong>[POST] /api/gather/x/y</strong><br>
-            Mark the tile that you are going to gather this science
+            Mark the tile that you are going to gather this science<br>
+<pre>
+    header: 'Rover-Name' : rovername (ie. ROVER_11)
+    header: 'Corp-Secret': corp_secret
+    POST: /api/gather/78/52
+
+    Now the tile looks like this:
+    {
+            "x":78,
+            "y":52,
+            "terrain": "SAND",      // ROCK, SOIL, GRAVEL, SAND, NONE
+            "science": "CRYSTAL",   // RADIOACTIVE, ORGANIC, MINERAL, CRYSTAL, NONE
+            "f": 10                 // Found by Rover 10 (for debugging)
+         <b>  <i> "g": 11                 // Marked by Rover 11 for gathering  </i> </b>
+    }
+</pre>
         </li>
     </ul>
     <h3>Coordinate</h3>
@@ -108,12 +124,25 @@ example: /api/coord/82/18
         <li>
             <strong>[POST] /api/coord/:x/:y/:science</strong> ** requires corp secret **<br>
             Update science information of this coordinate
+            <pre>
+header: 'Rover-Name' : rovername (ie. ROVER_14)
+header: 'Corp-Secret': corp_secret
+POST: /api/coord/30/40/DIAMOND
+
+Now the coordinate looks like:
+{
+  "x": 30,
+  "y": 40,
+  "science": "DIAMOND",  // now updated to DIAMOND. (but should only use: NONE, CRYSTAL, ORGANIC, RADIOACTIVE, MINERAL)
+  "terrain": "SOIL"
+  "f": 14                // updated by rover 14
+}</pre>
         </li>
     </ul>
     <h3>Misc.</h3>
     <ul>
         <li>
-            <strong>[GET] /api/roverinfo</strong><br>
+            <strong>[GET] <a href="/api/roverinfo">/api/roverinfo</a></strong><br>
             Shows information of the rovers
         </li>
         <br>
