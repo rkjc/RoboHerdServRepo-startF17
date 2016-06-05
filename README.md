@@ -10,5 +10,6 @@ and ideally a comment of whatever functionality as well as your name there if yo
 4. run `node app.js`
 5. Open browser and check http://localhost:3000/
 
-<s>server demo: http://23.251.155.186:3000/</s> - Server no longer available: Competition is over
-Please download the source code and run for demo
+<s>server demo: http://23.251.155.186:3000/</s>  
+Server no longer available because competition is over  
+Please download the source code and run for dem
