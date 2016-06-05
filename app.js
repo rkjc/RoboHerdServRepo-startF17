@@ -40,13 +40,13 @@ app.get('/api/global', function (req, res) {
 app.post('/api/global', function (req, res) {
 
     var rovername = req.header('Rover-Name');
-    var secret = req.header('Corp-Secret');
+    // var secret = req.header('Corp-Secret');
     var rover = rovers[rovername];
-    console.log("rover " + rover.id + ", secret: " + secret);
+    console.log("Posting Global Map: rover " + rover.id);
 
-    if (!secret || (secret !== process.env.GREENCORP_537_APIKEY)) {
-        res.status(401).send('Unauthorized. You must have GreenCorp secret to post');
-    } else {
+    // if (!secret || (secret !== process.env.GREENCORP_537_APIKEY)) {
+    //     res.status(401).send('Unauthorized. You must have GreenCorp secret to post');
+    // } else {
 
         var tiles = req.body;
         // validate that the data is an array
@@ -56,19 +56,20 @@ app.post('/api/global', function (req, res) {
         } else {
             res.send('Data must be an array');
         }
-    }
+    // }
     // for each tile, save to an object mapping by a key string, to minimize access time
 });
 
 // resets the data
 app.get('/api/global/reset', function (req, res) {
-    var secret = req.header('Corp-Secret');
-    if (!secret || secret !== process.env.GREENCORP_537_APIKEY) {
-        res.status(401).send('Unauthorized. Ask Sam for reset');
-    } else {
+    // var secret = req.header('Corp-Secret');
+    // if (!secret || secret !== process.env.GREENCORP_537_APIKEY) {
+    //     res.status(401).send('Unauthorized. Ask Sam for reset');
+    // } else {
+        console.log("Getting Global Map: rover " + rover.id);
         map = {};
         res.send("Data cleaned. Now you can do it but later you will require apikey");
-    }
+    // }
 });
 
 // for debugging
@@ -114,13 +115,13 @@ app.get('/api/coord/:x/:y', function (req, res) {
 app.post('/api/coord/:x/:y/:science', function (req, res) {
 
     var rovername = req.header('Rover-Name');
-    var secret = req.header('Corp-Secret');
+    // var secret = req.header('Corp-Secret');
     var rover = rovers[rovername];
     var science = req.params.science;
 
-    if (!secret || (secret !== process.env.GREENCORP_537_APIKEY)) {
-        res.status(401).send('Unauthorized. You must have GreenCorp secret to post');
-    } else {
+    // if (!secret || (secret !== process.env.GREENCORP_537_APIKEY)) {
+    //     res.status(401).send('Unauthorized. You must have GreenCorp secret to post');
+    // } else {
         var key = utils.getKey(req.params.x, req.params.y);
         if (!key)
             res.status(400).send('Bad input of X and Y');
@@ -140,18 +141,18 @@ app.post('/api/coord/:x/:y/:science', function (req, res) {
 
             }
         }
-    }
+    // }
 })
 
 app.post('/api/science/gather/:x/:y', function (req, res) {
 
     var rovername = req.header('Rover-Name');
-    var secret = req.header('Corp-Secret');
+    // var secret = req.header('Corp-Secret');
     var rover = rovers[rovername];
 
-    if (!secret || (secret !== process.env.GREENCORP_537_APIKEY)) {
-        res.status(401).send('Unauthorized. You must have GreenCorp secret to post');
-    } else {
+    // if (!secret || (secret !== process.env.GREENCORP_537_APIKEY)) {
+    //     res.status(401).send('Unauthorized. You must have GreenCorp secret to post');
+    // } else {
         var key = utils.getKey(req.params.x, req.params.y);
         if (!key)
             res.status(400).send('Bad input of X and Y');
@@ -173,7 +174,7 @@ app.post('/api/science/gather/:x/:y', function (req, res) {
                 res.status(400).send('Coordinate doesn\'t exist in global map');
             }
         }
-    }
+    // }
 
 })
 
