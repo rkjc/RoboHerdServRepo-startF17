@@ -62,13 +62,13 @@ app.post('/api/global', function (req, res) {
 
 // resets the data
 app.get('/api/global/reset', function (req, res) {
-    // var secret = req.header('Corp-Secret');
-    // if (!secret || secret !== process.env.GREENCORP_537_APIKEY) {
-    //     res.status(401).send('Unauthorized. You must have GreenCorp secret to access global map');
-    // } else {
+    var secret = req.header('Corp-Secret');
+    if (!secret || secret !== process.env.GREENCORP_537_APIKEY) {
+        res.status(401).send('Unauthorized. Ask Sam for reset');
+    } else {
         map = {};
         res.send("Data cleaned. Now you can do it but later you will require apikey");
-    // }
+    }
 });
 
 // for debugging
@@ -162,7 +162,7 @@ app.post('/api/science/gather/:x/:y', function (req, res) {
 
                     // TODO: implement tool and drive validity
                 } else {
-                    if (rover.tool) {
+                    if (rover.tool !== enums.tools.NONE) {
                         map[key].g = rover.id;
                         res.send('Getting : ' + key);
                     }else{
