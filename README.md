@@ -9,4 +9,4 @@ and ideally a comment of whatever functionality as well as your name there if yo
 3. run `npm install`
 4. run `node app.js`
 
-server address: http://23.251.155.186:3000/
+<s>server demo: http://23.251.155.186:3000/</s>
