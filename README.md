@@ -1,6 +1,5 @@
-# 537GreenCorp
-Hey guys, feel free to add things, and give yourself credit at the top if you contribute to it
-and ideally a comment of whatever functionality as well as your name there if you'd like to keep track of who did what faster
+# Swarm Robots Communication Server
+REST API server used as means to exchange information for [Swarm Robot Project][1]
 
 
 ####Instructions:
@@ -11,5 +10,9 @@ and ideally a comment of whatever functionality as well as your name there if yo
 5. Open browser and check http://localhost:3000/
 
 <s>server demo: http://23.251.155.186:3000/</s>  
+Video Demo: [2]
 Server demo no longer available because competition is over  
 Please download the source code and run for dem
+
+[1]: https://github.com/seungkim11/ROVER_11
+[2]: https://youtu.be/JlaW2y9WkOY
