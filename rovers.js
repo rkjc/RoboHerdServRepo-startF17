@@ -1,6 +1,36 @@
 var enums = require('./enums');
 
 module.exports = {
+    ROVER_01: {
+        id: 01,
+        sensor: enums.science.CRYSTAL,
+        tool: enums.tools.NONE,
+        drive: enums.drive.WHEELS
+    },
+    ROVER_02: {
+        id: 02,
+        sensor: enums.science.CRYSTAL,
+        tool: enums.tools.NONE,
+        drive: enums.drive.WHEELS
+    },
+    ROVER_03: {
+        id: 03,
+        sensor: enums.science.CRYSTAL,
+        tool: enums.tools.NONE,
+        drive: enums.drive.WHEELS
+    },
+    ROVER_04: {
+        id: 04,
+        sensor: enums.science.CRYSTAL,
+        tool: enums.tools.NONE,
+        drive: enums.drive.WHEELS
+    },
+    ROVER_05: {
+        id: 05,
+        sensor: enums.science.CRYSTAL,
+        tool: enums.tools.NONE,
+        drive: enums.drive.WHEELS
+    },
     ROVER_10: {
         id: 10,
         sensor: enums.science.CRYSTAL,
