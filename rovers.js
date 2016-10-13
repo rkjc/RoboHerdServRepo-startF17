@@ -4,32 +4,32 @@ module.exports = {
     ROVER_01: {
         id: 01,
         sensor: enums.science.CRYSTAL,
-        tool: enums.tools.NONE,
-        drive: enums.drive.WHEELS
+        tool: enums.tools.EXCAVATE,
+        drive: enums.drive.TREADS
     },
     ROVER_02: {
         id: 02,
-        sensor: enums.science.CRYSTAL,
-        tool: enums.tools.NONE,
-        drive: enums.drive.WHEELS
+        sensor: enums.science.NONE,
+        tool: enums.tools.BOTH,
+        drive: enums.drive.WALKER
     },
     ROVER_03: {
         id: 03,
-        sensor: enums.science.CRYSTAL,
-        tool: enums.tools.NONE,
+        sensor: enums.science.ORGANIC,
+        tool: enums.tools.EXCAVATE,
         drive: enums.drive.WHEELS
     },
     ROVER_04: {
         id: 04,
-        sensor: enums.science.CRYSTAL,
-        tool: enums.tools.NONE,
-        drive: enums.drive.WHEELS
+        sensor: enums.science.RADIOACTIVE,
+        tool: enums.tools.DRILL,
+        drive: enums.drive.WALKER
     },
     ROVER_05: {
         id: 05,
-        sensor: enums.science.CRYSTAL,
-        tool: enums.tools.NONE,
-        drive: enums.drive.WHEELS
+        sensor: enums.science.MINERAL,
+        tool: enums.tools.EXCAVATE,
+        drive: enums.drive.TREADS
     },
     ROVER_10: {
         id: 10,
