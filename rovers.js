@@ -17,7 +17,7 @@ module.exports = {
         id: 03,
         sensor: enums.science.ORGANIC,
         tool: enums.tools.EXCAVATE,
-        drive: enums.drive.WHEELS
+        drive: enums.drive.TREADS
     },
     ROVER_04: {
         id: 04,
