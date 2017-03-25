@@ -14,6 +14,12 @@ exports.updateGlobalMap = function (map, tiles, rover){
             //  if the tile exists in the map
             if (map[key]) {
 
+                if(tile.hasrover == true) {
+                    map[key].roverid = rover.id;
+                } else {
+                    map[key].roverid = undefined;
+                }
+
                 // can overwrite only when the this rover is a sensor
                 if (rover.sensor !== enums.NONE){
 
