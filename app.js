@@ -6,7 +6,7 @@
 var express = require('./express');
 var app = express();
 
-var mongojs = require('mongojs')
+var mongojs = require('mongojs');
 var rovers = require('./rovers');
 var utils = require('./utils');
 var enums = require('./enums');
@@ -18,8 +18,9 @@ var enums = require('./enums');
 //         "science": "CRYSTAL",  // RADIOACTIVE, ORGANIC, MINERAL, ARTIFACT, CRYSTAL, NONE
 //     };
 
+var tweets = {};
 
-var map = {}
+var map = {};
 
 // Homepage with instructions
 app.get('/', function (req, res) {
@@ -176,7 +177,36 @@ app.post('/api/science/gather/:x/:y', function (req, res) {
         }
     // }
 
-})
+});
+
+app.post('/api/rover/tweet', function (req, res) {
+    console.log('$$$$$$$$$$$$$$$$$');
+
+    var rovername = req.header('Rover-Name');
+    var rover = rovers[rovername];
+    console.log("Received tweet: rover " + rover.id);
+
+    var tweetMessage = req.body;
+
+    if(tweets[rovername] == undefined || tweets[rovername] == null) {
+        tweets[rovername] = [];
+    }
+
+    tweets[rovername].push(tweetMessage);
+
+    res.send('OK');
+});
+
+app.get('/api/rover/tweet/:roverName', function (req, res) {
+
+    var rovername = req.header('Rover-Name');
+    var rover = rovers[rovername];
+    console.log("Received read tweet: rover " + rover.id);
+
+    var roverTweet = tweets[req.params.roverName].pop();
+    
+    res.send(roverTweet);
+});
 
 app.get('/api/roverinfo', function (req, res) {
     res.send(rovers);
