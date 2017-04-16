@@ -188,11 +188,7 @@ app.post('/api/rover/tweet', function (req, res) {
 
     var tweetMessage = req.body;
 
-    if(tweets[rovername] == undefined || tweets[rovername] == null) {
-        tweets[rovername] = [];
-    }
-
-    tweets[rovername].push(tweetMessage);
+    tweets[rovername] = tweetMessage;
 
     res.send('OK');
 });
@@ -203,8 +199,14 @@ app.get('/api/rover/tweet/:roverName', function (req, res) {
     var rover = rovers[rovername];
     console.log("Received read tweet: rover " + rover.id);
 
-    var roverTweet = tweets[req.params.roverName].pop();
-    
+    var roverTweet;
+
+    if(tweets[req.params.roverName] != undefined && tweets[req.params.roverName] != null) {
+        roverTweet = tweets[req.params.roverName];        
+    } else {
+        roverTweet = "{'message':'No co-ordinates available for rover " + req.params.roverName + "''}";
+    }
+
     res.send(roverTweet);
 });
 
