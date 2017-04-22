@@ -18,7 +18,7 @@ var enums = require('./enums');
 //         "science": "CRYSTAL",  // RADIOACTIVE, ORGANIC, MINERAL, ARTIFACT, CRYSTAL, NONE
 //     };
 
-var tweets = {};
+var roverDetails = {};
 
 var map = {};
 
@@ -166,9 +166,9 @@ app.post('/api/science/gather/:x/:y', function (req, res) {
                 } else {
                     if (rover.tool !== enums.tools.NONE) {
                         map[key].g = rover.id;
-                        res.send('Getting : ' + key);
+                        res.status(200).send('Getting : ' + key);
                     }else{
-                        res.send('Rover doesn\'t have tool for it');
+                        res.status(403).send('Rover doesn\'t have tool for it');
                     }
                 }
             } else {
@@ -179,35 +179,26 @@ app.post('/api/science/gather/:x/:y', function (req, res) {
 
 });
 
-app.post('/api/rover/tweet', function (req, res) {
-    console.log('$$$$$$$$$$$$$$$$$');
+app.post('/api/rover/detail', function (req, res) {
 
     var rovername = req.header('Rover-Name');
     var rover = rovers[rovername];
-    console.log("Received tweet: rover " + rover.id);
+    console.log("Received post rover details from rover " + rover.id);
 
-    var tweetMessage = req.body;
+    var roverDetail = req.body;
 
-    tweets[rovername] = tweetMessage;
+    roverDetails[rovername] = roverDetail;
 
-    res.send('OK');
+    res.status(200).send('OK');
 });
 
-app.get('/api/rover/tweet/:roverName', function (req, res) {
+app.get('/api/rover/detail/all', function (req, res) {
 
     var rovername = req.header('Rover-Name');
     var rover = rovers[rovername];
-    console.log("Received read tweet: rover " + rover.id);
+    console.log("Received get rover details from rover " + rover.id);
 
-    var roverTweet;
-
-    if(tweets[req.params.roverName] != undefined && tweets[req.params.roverName] != null) {
-        roverTweet = tweets[req.params.roverName];        
-    } else {
-        roverTweet = "{'message':'No co-ordinates available for rover " + req.params.roverName + "''}";
-    }
-
-    res.send(roverTweet);
+    res.status(200).send(roverDetails);
 });
 
 app.get('/api/roverinfo', function (req, res) {
