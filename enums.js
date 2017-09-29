@@ -18,7 +18,8 @@ module.exports = {
     drive: {
         WHEELS: "WHEELS",
         TREADS: "TREADS",
-        WALKER: "WALKER"
+        WALKER: "WALKER",
+        NONE: "NONE"
     },
     terrain: {
         GRAVEL: "GRAVEL",
